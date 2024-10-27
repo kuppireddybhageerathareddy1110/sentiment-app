@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/images/background.jpg'); /* Local background image */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Change text color to white for better visibility */
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            margin-bottom: 30px;
+            color: #ffdd57; /* Change heading color for emphasis */
+        }
+        textarea {
+            width: 80%;
+            max-width: 600px;
+            height: 150px;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #fff; /* Change textarea background for visibility */
+            color: #333; /* Change textarea text color */
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+        .error {
+            color: #ff6347; /* Change error message color */
+            margin-top: 10px;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Analysis</h1>
+        <form method="POST">
+            <textarea name="text" placeholder="Enter text here..." required></textarea><br>
+            <input type="submit" value="Analyze">
+        </form>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+    <footer>
+        <p>&copy; 2024 Sentiment Analysis App</p>
+    </footer>
+</body>
+</html>

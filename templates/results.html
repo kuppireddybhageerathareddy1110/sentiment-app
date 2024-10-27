@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('/static/images/background.jpg'); /* Local background image */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Change text color to white for better visibility */
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h1, h2 {
+            color: #ffdd57; /* Change heading color for emphasis */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent background for list items */
+            color: #333; /* Change text color for list items */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        form {
+            display: inline;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #e74c3c;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #c0392b;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sentiment Results</h1>
+        <h2>Sentiment Counts</h2>
+        <p><strong>Positive:</strong> {{ sentiment_counts['Positive'] }}</p>
+        <p><strong>Negative:</strong> {{ sentiment_counts['Negative'] }}</p>
+        <p><strong>Neutral:</strong> {{ sentiment_counts['Neutral'] }}</p>
+
+        <h2>All Sentiments</h2>
+        <ul>
+            {% for sentiment in sentiments %}
+                <li>
+                    <span>{{ sentiment['text'] }} - {{ sentiment['sentiment'] }} {{ sentiment['emoji'] }}</span>
+                    <form action="{{ url_for('delete', id=sentiment['_id']) }}" method="POST">
+                        <input type="submit" value="Delete">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+        
+        <form action="{{ url_for('clear') }}" method="POST">
+            <input type="submit" value="Clear All">
+        </form>
+        <br>
+        <a href="{{ url_for('index') }}" style="text-decoration: none; color: #3498db;">Go Back</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Sentiment Analysis App</p>
+    </footer>
+</body>
+</html>
