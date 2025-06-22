@@ -13,3 +13,4 @@ TextBlob==0.15.3
 Flask-Login==0.6.0
 Werkzeug==2.0.3
 python-dotenv
+dnspython>=2.0.0
